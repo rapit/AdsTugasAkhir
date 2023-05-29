@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import coverImg from "../../images/cover_not_found.jpg";
 import { FaArrowLeft } from "react-icons/fa";
 import './BookCover.css';
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 
 const URL = "https://openlibrary.org/works/";
 
@@ -15,6 +16,43 @@ const BookCover = () => {
   const [name, setName] = useState('');
   const [address, setAddress] = useState('');
   const navigate = useNavigate();
+  const [number, setNumber] = useState(0);
+  const [hoverStar, setHoverStar] = useState(undefined);
+
+  const handleText = () => {
+    switch (number || hoverStar) {
+      case 0:
+        return "Evaluasi";
+      case 1:
+        return "Sangat buruk";
+      case 2:
+        return "Buruk";
+      case 3:
+        return "Normal";
+      case 4:
+        return "Baik";
+      case 5:
+        return "Sangat Baik";
+      default:
+        return "Evaluasi";
+    }
+  };
+
+  const handlePlaceHolder = () => {
+    switch (number || hoverStar) {
+      case 0:
+        return "Comment here...";
+      case 1:
+      case 2:
+      case 3:
+      case 4:
+        return "What is your problem?";
+      case 5:
+        return "Why do you like the product?";
+      default:
+        return "Comment here...";
+    }
+  };
 
   useEffect(() => {
     setLoading(true);
@@ -94,7 +132,7 @@ const BookCover = () => {
               <label htmlFor='address'>Address:</label>
               <input type='text' id='address' value={address} onChange={handleAddressChange} />
 
-              <button type='submit'>Rate and Review</button>
+              <a href='comments'><button type='button'>Rate and Review</button></a>
 
               <button type='button' onClick={() => window.open('/LoremIpsum.pdf', '_blank')}>
                 Baca Buku
@@ -103,6 +141,39 @@ const BookCover = () => {
               <button type="button" onClick={handleDownloadPDF}>Download PDF</button>
             
             </form>
+          </div>
+        </div>
+        <div className="App">
+          <div className="popup">
+            <div className="content">
+              <div className="product">
+                <h1>Rate is Book!</h1>
+              </div>
+              <div>
+                <h1>{handleText()}</h1>
+                {Array(5)
+                  .fill()
+                  .map((_, index) =>
+                    number >= index + 1 || hoverStar >= index + 1 ? (
+                      <AiFillStar
+                        onMouseOver={() => !number && setHoverStar(index + 1)}
+                        onMouseLeave={() => setHoverStar(undefined)}
+                        style={{ color: "orange" }}
+                        onClick={() => setNumber(index + 1)}
+                      />
+                    ) : (
+                      <AiOutlineStar
+                        onMouseOver={() => !number && setHoverStar(index + 1)}
+                        onMouseLeave={() => setHoverStar(undefined)}
+                        style={{ color: "orange" }}
+                        onClick={() => setNumber(index + 1)}
+                      />
+                    )
+                  )}
+              </div>
+              <textarea placeholder={handlePlaceHolder()}></textarea>
+              <button className={` ${!number && "disabled"} `}>Submit</button>
+            </div>
           </div>
         </div>
       </div>
