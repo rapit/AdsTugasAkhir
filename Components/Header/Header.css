@@ -1,0 +1,23 @@
+.header-content{
+    min-height: 120vh;
+    background: url("../../images/Group\ 7.png") right no-repeat;
+    flex-direction: column;
+}
+.header-title{
+    font-size: 4.7rem;
+    padding: 50px;
+    margin-top: 20px;
+    max-width: 620px;
+}
+.header-text{
+    margin-top: -8rem;
+    margin-bottom: 2.8rem;
+    font-size: 16px;
+    opacity: 0.8;
+    max-width: 595px;
+    text-align: left;
+    padding: 50px;
+    text-align: justify;
+
+    
+}
