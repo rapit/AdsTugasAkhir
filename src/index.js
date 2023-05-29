@@ -13,7 +13,6 @@ import Register from './Pages/Register/Register';
 import Profile from './Pages/Profile/Profile';
 import BookCover from './Components/Bookcover/BookCover';
 import { AppProvider } from './Context';
-import "bulma/css/bulma.css";
 import Addbook from '../src/Components/Addbook/Addbook';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
