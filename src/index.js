@@ -13,7 +13,8 @@ import Register from './Pages/Register/Register';
 import Profile from './Pages/Profile/Profile';
 import BookCover from './Components/Bookcover/BookCover';
 import { AppProvider } from './Context';
-
+import "bulma/css/bulma.css";
+import Addbook from '../src/Components/Addbook/Addbook';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,13 +29,9 @@ root.render(
           <Route path="/register" element={<Register />} />
           <Route path="/bookcover/:id" element={<BookCover />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/addbook" element={<Addbook />} />
         </Route>
       </Routes>
     </BrowserRouter>
   </AppProvider>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-
